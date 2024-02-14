@@ -1,2 +1,3 @@
-# fnabb
-five nights at breaking bad's src
+# Five Nights at Breaking Bad's
+
+please don't roast me for my bad code at least it works ok
