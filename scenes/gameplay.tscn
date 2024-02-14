@@ -1,0 +1,239 @@
+[gd_scene load_steps=11 format=3 uid="uid://c14pihpxwr40a"]
+
+[ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_q48a4"]
+[ext_resource type="Texture2D" uid="uid://dk056o173i37j" path="res://media/happy hank.png" id="1_r4gth"]
+[ext_resource type="Script" path="res://scenes/camSystem.gd" id="2_mhooe"]
+[ext_resource type="Texture2D" uid="uid://1th5mggik00c" path="res://media/rv.png" id="4_omupb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q1k54"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6fuho"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0bfgw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_htft2"]
+
+[sub_resource type="Sky" id="Sky_lksxp"]
+
+[sub_resource type="Environment" id="Environment_yogg7"]
+background_mode = 2
+sky = SubResource("Sky_lksxp")
+fog_light_color = Color(0.172549, 0.192157, 0.219608, 1)
+
+[node name="gameplay" type="Node3D"]
+
+[node name="rv" type="Node3D" parent="."]
+
+[node name="lightBulb" type="OmniLight3D" parent="rv"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.5, 1.703, 0)
+light_color = Color(1, 1, 0.854902, 1)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="room" type="Node3D" parent="rv"]
+
+[node name="floor" type="MeshInstance3D" parent="rv/room"]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../..")
+
+[node name="ceiling" type="MeshInstance3D" parent="rv/room"]
+transform = Transform3D(4, 0, 0, 0, -1, 2.71792e-07, 0, -1.50996e-07, -1.8, 1, 2, 0)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../..")
+
+[node name="frontWall" type="MeshInstance3D" parent="rv/room"]
+transform = Transform3D(5, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, -1.5)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../..")
+
+[node name="leftWall" type="MeshInstance3D" parent="rv/room"]
+transform = Transform3D(-6.55671e-08, 1, -2.18557e-08, 0, -4.37114e-08, -0.5, -1.5, -4.37114e-08, 9.55343e-16, -3, 0.5, 0)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../..")
+
+[node name="leftWall2" type="MeshInstance3D" parent="rv/room/leftWall"]
+transform = Transform3D(0.4, -7.00649e-44, 4.23516e-22, 0, 1, 1.67037e-22, -1.69407e-22, -1.67037e-22, 1, 0.6, 0, -2)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../../..")
+
+[node name="leftWall3" type="MeshInstance3D" parent="rv/room/leftWall"]
+transform = Transform3D(0.4, -7.00649e-44, 4.23516e-22, 0, 1, 1.67037e-22, -1.69407e-22, -1.67037e-22, 1, -0.6, 0, -2)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../../..")
+
+[node name="leftWall4" type="MeshInstance3D" parent="rv/room/leftWall"]
+transform = Transform3D(0.2, -7.00649e-44, 1.27055e-22, 0, 1, 5.01112e-23, -8.47033e-23, -1.67037e-22, 0.3, 0, 0, -2.7)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../../..")
+
+[node name="leftWall2" type="MeshInstance3D" parent="rv/room"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -4, 1.5, 0)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../..")
+
+[node name="backWall" type="MeshInstance3D" parent="rv/room"]
+transform = Transform3D(5, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 1.5)
+mesh = SubResource("PlaneMesh_q1k54")
+skeleton = NodePath("../../..")
+
+[node name="frontSeats" type="Node3D" parent="rv/room"]
+
+[node name="step" type="MeshInstance3D" parent="rv/room/frontSeats"]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 3, 4, 0, 0)
+mesh = SubResource("BoxMesh_6fuho")
+skeleton = NodePath("../..")
+
+[node name="driver" type="MeshInstance3D" parent="rv/room/frontSeats"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0.75, -0.8)
+mesh = SubResource("BoxMesh_6fuho")
+skeleton = NodePath("../..")
+
+[node name="headrest" type="MeshInstance3D" parent="rv/room/frontSeats/driver"]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 0.6, 0, 0.65, 0)
+mesh = SubResource("BoxMesh_6fuho")
+skeleton = NodePath("../../..")
+
+[node name="passenger" type="MeshInstance3D" parent="rv/room/frontSeats"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0.75, 0.8)
+mesh = SubResource("BoxMesh_6fuho")
+skeleton = NodePath("../..")
+
+[node name="headrest" type="MeshInstance3D" parent="rv/room/frontSeats/passenger"]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 0.6, 0, 0.65, 0)
+mesh = SubResource("BoxMesh_6fuho")
+skeleton = NodePath("../../..")
+
+[node name="front" type="MeshInstance3D" parent="rv/room/frontSeats"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 3, 5.5, 0, 0)
+mesh = SubResource("BoxMesh_6fuho")
+skeleton = NodePath("../..")
+
+[node name="windshield" type="MeshInstance3D" parent="rv/room/frontSeats"]
+transform = Transform3D(-0.260472, -0.984808, 0, 1.47721, -0.173648, 0, 0, 0, 2, 5, 1, 0)
+mesh = SubResource("PlaneMesh_0bfgw")
+skeleton = NodePath("../..")
+
+[node name="curtainBar" type="MeshInstance3D" parent="rv/room"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 3, 3, 1.8, 0)
+mesh = SubResource("BoxMesh_6fuho")
+
+[node name="objects" type="Node3D" parent="rv"]
+
+[node name="table" type="MeshInstance3D" parent="rv/objects"]
+transform = Transform3D(6, 0, 0, 0, 1.5, 0, 0, 0, 1, -1, 0, -1.3)
+mesh = SubResource("BoxMesh_htft2")
+
+[node name="generator" type="MeshInstance3D" parent="rv/objects"]
+transform = Transform3D(-6.55671e-08, 0, -0.8, 0, 1.5, 0, 1.5, 0, -3.49691e-08, -1.2, 0, 0.1)
+mesh = SubResource("BoxMesh_htft2")
+
+[node name="door" type="MeshInstance3D" parent="rv/objects"]
+transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 0.3, 1.3, 0.7, 1.5)
+mesh = SubResource("BoxMesh_htft2")
+
+[node name="sprites" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+current = true
+fov = 60.0
+script = ExtResource("1_q48a4")
+
+[node name="panning" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="snapLeft" type="Panel" parent="Camera3D/panning"]
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 360.0
+
+[node name="snapRight" type="Panel" parent="Camera3D/panning"]
+layout_mode = 0
+offset_left = 610.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="generator" type="Panel" parent="Camera3D/panning"]
+visible = false
+layout_mode = 0
+offset_left = 70.0
+offset_top = 330.0
+offset_right = 570.0
+offset_bottom = 360.0
+
+[node name="cameras" type="Panel" parent="Camera3D/panning"]
+process_mode = 3
+process_priority = -1
+process_physics_priority = -1
+visible = false
+top_level = true
+visibility_layer = 2
+layout_mode = 0
+offset_left = 70.0
+offset_top = 330.0
+offset_right = 570.0
+offset_bottom = 360.0
+
+[node name="canvas" type="CanvasLayer" parent="Camera3D/panning/cameras"]
+visible = false
+
+[node name="camSystem" type="Control" parent="Camera3D/panning/cameras/canvas"]
+process_mode = 1
+process_priority = 1
+process_physics_priority = 1
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_mhooe")
+
+[node name="camPicker" type="TextureRect" parent="Camera3D/panning/cameras/canvas/camSystem"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 120.0
+offset_right = 1290.0
+offset_bottom = 720.0
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("4_omupb")
+
+[node name="camera" type="TextureRect" parent="Camera3D/panning/cameras/canvas/camSystem"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_r4gth")
+expand_mode = 1
+
+[node name="placeholderText" type="Label" parent="Camera3D/panning/cameras/canvas/camSystem"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = " THIS IS A PLACEHOLDER IMAGE DO NOT PANIC DO NOT BE JUMPSCARED
+(wow very effective anti-jumpscare method)"
+
+[node name="subcameras" type="Panel" parent="Camera3D/panning/cameras/canvas/camSystem"]
+process_mode = 3
+process_priority = -1
+process_physics_priority = -1
+top_level = true
+visibility_layer = 2
+layout_mode = 0
+offset_left = 70.0
+offset_top = 330.0
+offset_right = 570.0
+offset_bottom = 360.0
+
+[node name="mainExitReady" type="Timer" parent="Camera3D/panning/cameras/canvas/camSystem"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yogg7")
+
+[connection signal="mouse_entered" from="Camera3D/panning/snapLeft" to="Camera3D" method="_on_snap_left_mouse_entered"]
+[connection signal="mouse_entered" from="Camera3D/panning/snapRight" to="Camera3D" method="_on_snap_right_mouse_entered"]
+[connection signal="mouse_entered" from="Camera3D/panning/generator" to="Camera3D" method="_on_generator_mouse_entered"]
+[connection signal="mouse_entered" from="Camera3D/panning/cameras" to="Camera3D" method="_on_cameras_mouse_entered"]
+[connection signal="mouse_entered" from="Camera3D/panning/cameras/canvas/camSystem/subcameras" to="Camera3D/panning/cameras/canvas/camSystem" method="_on_subcameras_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/panning/cameras/canvas/camSystem/subcameras" to="Camera3D/panning/cameras/canvas/camSystem" method="_on_subcameras_mouse_exited"]
