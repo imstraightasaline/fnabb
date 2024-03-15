@@ -23,7 +23,7 @@ func _ready() -> void:
 	initial_turning_speed = 360 / 15360
 	return
 
-func _process(delta : float) -> void:
+func _process(delta : float) -> void: ## CREDIT BTW: https://www.youtube.com/watch?v=3HT9xQgthTk
 	var mouse_position : Vector2 = get_viewport().get_mouse_position()
 	if mouse_position.x < left_dist:
 		rotate_y(deg_to_rad((left_dist - mouse_position.x) * delta * sensitivity + initial_turning_speed))
